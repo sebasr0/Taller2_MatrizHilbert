@@ -33,10 +33,10 @@ Implementar en Python el algoritmo de sustitución hacia adelante para resolver 
 
 Cada problema tiene un archivo Jupyter Notebook con la resolución en Python utilizando NumPy y Matplotlib.
 
-- Problema1.ipynb
-- Problema2.ipynb 
-- Problema3.ipynb
-- Problema4.ipynb
+- Punto1_Coeficientes.ipynb
+- Punto2_Distancia_Mahalanobis.ipynb 
+- Punto3_.ipynb
+- Punto4_MatrizHilbert.ipynb
 
 ## Ejecución 
 
