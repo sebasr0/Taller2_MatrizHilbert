@@ -17,6 +17,7 @@ Dado un conjunto de datos:
 
 1. Calcular medias y matriz de covarianzas para 4 variables.
 2. Demostrar relación entre matriz de datos centrados y matriz de covarianzas.
+   #### R// $(ZT * Z) / (n - 1)$ Es la matriz de covarianza
 3. Calcular distancias de Mahalanobis de cada observación a las medias.
 4. Graficar dispersión de variables coloreando por distancia de Mahalanobis.
 
