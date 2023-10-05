@@ -31,7 +31,7 @@ Implementar en Python el algoritmo de sustitución hacia adelante para resolver 
 
 ## Notebooks
 
-Cada problema tiene un archivo Jupyter Notebook con la resolución en Python utilizando NumPy y Matplotlib.
+Cada problema tiene un archivo Jupyter Notebook con la resolución en Python utilizando NumPy, Matplotlib, SciPy.
 
 - Punto1_Coeficientes.ipynb
 - Punto2_Distancia_Mahalanobis.ipynb 
@@ -45,6 +45,7 @@ Requisitos:
 - NumPy
 - Matplotlib
 - Pandas
+- ScyPy
 
 Ejecutar cada notebook para ver la resolución detallada de los problemas.
 
