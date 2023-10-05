@@ -48,7 +48,3 @@ Requisitos:
 - ScyPy
 
 Ejecutar cada notebook para ver la resolución detallada de los problemas.
-
-## Licencia
-
-MIT License
