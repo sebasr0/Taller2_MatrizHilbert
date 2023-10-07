@@ -6,10 +6,33 @@ Este repositorio contiene la resolución en Python de los ejercicios propuestos 
 
 ### Problema 1
 
-Se tiene información sobre las horas que un estudiante utilizó 3 procesadores diferentes durante 3 días, y el costo total por día. Se pide:
+# Taller - Problema 1
 
-1. Plantear un sistema de ecuaciones 3x3 para calcular el precio por hora de cada procesador.
-2. Analizar cómo cambia la solución al modificar un dato del sistema. Calcular cotas de error.
+**Autores:**  
+- Sebastian Ramirez Escobar
+- Sebastian Carvalho Salazar
+- Johan Stiven Paez Bermudez
+
+## Descripción del problema
+
+Un estudiante del curso de álgebra para ciencia de los datos debe realizar cálculos durante tres días en tres procesadores A, B y C. Se proporcionan detalles sobre las horas gastadas en cada procesador y el costo asociado por día. Se busca determinar el precio por hora en cada procesador.
+
+## Solución
+
+### Precio por hora en cada procesador
+
+- Procesador A: $40
+- Procesador B: $10
+- Procesador C: $20
+
+Sin embargo, el estudiante comete un error mínimo en las horas registradas para el procesador A en el tercer día. Se debe analizar cómo este error afecta el valor de la hora en cada procesador y calcular una cota superior para el error relativo.
+
+Output:
+Solución: [20. 31.54 10.77]
+Solución exacta: [40. 10. 20.]
+Solución aproximada: [20. 31.54 10.77]
+Error relativo: 0.6723
+Cota superior para el error relativo: [[0, 0, 0], [0, 0, 0], [23.02, 0, 0]]
 
 ### Problema 2 
 
