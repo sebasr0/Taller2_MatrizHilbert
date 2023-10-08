@@ -7,6 +7,28 @@ Este repositorio contiene la resolución en Python de los ejercicios propuestos 
 - Sebastian Carvalho Salazar
 - Johan Stiven Paez Bermudez
 
+## Tabla de Contenido
+
+- [Taller 2 - Matrices y Sistemas de Ecuaciones](#taller-2---matrices-y-sistemas-de-ecuaciones)
+  - [Descripción de los problemas](#descripción-de-los-problemas)
+    - [Problema 1](#problema-1)
+      - [Descripción del problema](#descripción-del-problema)
+      - [Solución](#solución)
+    - [Problema 2](#problema-2)
+      - [Descripción](#descripción)
+      - [Procedimiento](#procedimiento)
+      - [Código y Resultados](#código-y-resultados)
+    - [Problema 3](#problema-3)
+      - [Descripción del problema](#descripción-del-problema-1)
+      - [Solución](#solución-1)
+    - [Problema 4](#problema-4)
+      - [Descripción del problema](#descripción-del-problema-2)
+      - [Solución](#solución-2)
+      - [Código y Resultados](#código-y-resultados-1)
+      - [Insights](#insights)
+  - [Notebooks](#notebooks)
+  - [Ejecución](#ejecución)
+
 ## Descripción de los problemas
 
 ### Problema 1
