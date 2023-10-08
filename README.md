@@ -51,13 +51,6 @@ Se realiza un análisis sobre el conjunto de datos "Pima Indians Diabetes" con e
 1. **Importación de Librerías y Datos:**  
    Se importan las librerías necesarias y se lee el conjunto de datos.
 
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.spatial import distance
-```
-
 2. **Selección de Variables:**  
    Se seleccionan 4 variables numéricas de interés: `glucose`, `bmi`, `blood_pressure`, y `age`.
 
@@ -75,18 +68,132 @@ from scipy.spatial import distance
 
 ![Gráfica de dispersión de glucose vs. blood_pressure](Punto2_DMahalanobis/assets/output_mahalanobis.png)
 
-##### Insights
-
-- La gráfica de dispersión muestra la relación entre los niveles de glucosa y la presión sanguínea de los individuos. Los colores indican la distancia de Mahalanobis de cada observación respecto al vector de medias.
-
 ### Problema 3
 
-Implementar en Python el algoritmo de sustitución hacia adelante para resolver sistemas de ecuaciones triangulares.
+#### Algoritmo de Sustitución Hacia Adelante
+
+##### Descripción del problema
+
+El objetivo es implementar el algoritmo de sustitución hacia adelante para resolver el sistema lineal \( Lx = b \), donde \( L \) es una matriz triangular inferior. Si el sistema tiene infinitas soluciones, el algoritmo debe retornar una solución particular y una base para el espacio nulo de \( L \).
+
+##### Solución
+
+Se desarrolló una función `forward_substitution` que toma como argumentos la matriz \( L \) y el vector \( b \). La función sigue los siguientes pasos:
+
+1. Inicializa un vector \( x \) con ceros.
+2. Itera sobre cada fila de \( L \).
+3. Si el elemento diagonal es cercano a cero, verifica si el sistema tiene solución. En caso de no tenerla, lanza un error. Si tiene solución, genera una base para el espacio nulo.
+4. Si el elemento diagonal no es cero, calcula el valor correspondiente de \( x \) utilizando la fórmula de sustitución hacia adelante.
+
+El algoritmo retorna el vector \( x \) si el sistema tiene una única solución. Si tiene infinitas soluciones, retorna una solución particular y una base para el espacio nulo de \( L \).
+
+##### Código
+
+```python
+import numpy as np
+
+def forward_substitution(L, b):
+    n = L.shape[0]
+    x = np.zeros(n)
+    null_space_basis = []
+    
+    for i in range(n):
+        if np.isclose(L[i, i], 0):  # Si el elemento diagonal es cercano a cero
+            if not np.isclose(b[i], 0):  # Si el término independiente no es cero
+                raise ValueError("El sistema no tiene solución.")
+            else:  # Generamos una base para el espacio nulo
+                null_vector = np.zeros(n)
+                null_vector[i] = 1
+                null_space_basis.append(null_vector)
+        else:
+            x[i] = (b[i] - np.dot(L[i, :i], x[:i])) / L[i, i]
+    
+    if null_space_basis:
+        return x, np.array(null_space_basis)
+    return x
+
+# Ejemplo de uso
+L = np.array([[5, 0, 0],
+              [3, 0, 0],
+              [1, 3, 7]])
+b = np.array([4, 0, 5])
+
+result = forward_substitution(L, b)
+
+if isinstance(result, tuple):
+    x_particular, null_basis = result
+    print("Solución particular x:", x_particular)
+    print("Base del espacio nulo de L:\n", null_basis)
+else:
+    print("Solución x:", result)
+```
+
+---
 
 ### Problema 4
 
 1. Simular datos multivariate con matriz de covarianza de Hilbert. Graficar condicionamiento.
 2. Ejemplo de sistema mal condicionado con matriz de Hilbert.
+
+#### Análisis de la Matriz de Hilbert y Estimación de la Matriz de Covarianza
+
+##### Descripción del problema
+
+Dada la matriz de Hilbert \( H_n \), se busca simular 1000 datos normales con esta matriz como matriz de covarianza. Posteriormente, se estima la matriz de covarianza a partir de los datos simulados y se grafica el número de condición de la matriz de covarianza estimada en función de \( n \). El objetivo es observar el comportamiento del número de condición y analizar las implicaciones de este comportamiento en la solución de sistemas lineales asociados a la matriz de Hilbert.
+
+##### Solución
+
+1. **Matriz de Hilbert:**  
+   Se define una función `hilbert_matrix` que genera la matriz de Hilbert de tamaño \( n \times n \).
+
+2. **Simulación de Datos:**  
+   Se simulan 1000 datos normales con matriz de covarianza \( H_n \) usando la función `simulador_datos`.
+
+3. **Estimación de la Matriz de Covarianza:**  
+   Se estima la matriz de covarianza a partir de los datos simulados.
+
+4. **Número de Condición:**  
+   Se calcula el número de condición de la matriz de covarianza estimada para diferentes valores de \( n \) y se grafica en función de \( n \).
+
+5. **Resolución del Sistema Lineal:**  
+   Se resuelve el sistema \( H_{15}x = b \) para un vector \( x \) dado, utilizando diferentes aproximaciones y se comparan los resultados.
+
+##### Código y Resultados
+
+###### Aproximación 1 - Numpy
+
+Se utiliza la librería Numpy para generar la matriz de Hilbert, simular los datos, estimar la matriz de covarianza y resolver el sistema lineal.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Funciones y código relacionado...
+```
+
+###### Aproximación 2 - SciPy
+
+Se utiliza la librería SciPy para generar la matriz de Hilbert y resolver el sistema lineal, ofreciendo una comprobación de los resultados obtenidos con Numpy.
+
+```python
+from scipy.linalg import hilbert, inv, norm
+
+# Funciones y código relacionado...
+```
+
+###### Gráfica del Número de Condición vs. \( n \)
+###### Aproximación Numpy:
+![Gráfica del Número de Condición vs. n](Punto4_MatrizHilbert/assets/output_np.png)
+###### Aproximación Scipy:
+![Gráfica del Número de Condición vs. n](Punto4_MatrizHilbert/assets/output_scipy.png)
+###### Try,Except (escala logarítmica)
+![Gráfica del Número de Condición vs. n](Punto4_MatrizHilbert/assets/output_log.png)
+
+##### Insights
+
+- La matriz de Hilbert es conocida por ser mal condicionada, lo que significa que pequeños cambios en los datos pueden llevar a grandes cambios en la solución.
+- A medida que \( n \) aumenta, el número de condición también aumenta, lo que indica que la matriz se vuelve más y más mal condicionada.
+- Al resolver el sistema \( H_{15}x = b \), se observan diferencias significativas en las soluciones obtenidas con diferentes métodos, lo que resalta la importancia de elegir métodos numéricos adecuados para matrices mal condicionadas.
 
 ## Notebooks
 
@@ -94,7 +201,7 @@ Cada problema tiene un archivo Jupyter Notebook con la resolución en Python uti
 
 - Punto1_Coeficientes.ipynb
 - Punto2_Distancia_Mahalanobis.ipynb 
-- Punto3_.ipynb
+- Punto3_Sustitucion.ipynb
 - Punto4_MatrizHilbert.ipynb
 
 ## Ejecución 
